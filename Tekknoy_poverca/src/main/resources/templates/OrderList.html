@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all orders</title>
+    <style type="text/css">
+        body {
+            padding: 10px;
+            margin-left: 100px;
+        }
+
+        .orders, .orders td {
+            border: 1px solid lightgray;
+            padding: 5px;
+
+        }
+        .floated {
+
+            width:150px;
+            display:inline-block;
+            height: 30px;
+        }
+
+        #zatemnenie {
+        background: rgba(102, 102, 102, 0.5);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+      }
+      #okno {
+        width: 300px;
+        height: 60px;
+        text-align: center;
+        padding: 15px;
+        border: 3px solid #0000cc;
+        border-radius: 10px;
+        color: #0000cc;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        background: #fff;
+      }
+      #zatemnenie:target {display: block;}
+      .close {
+        display: inline-block;
+        border: 1px solid #0000cc;
+        color: #0000cc;
+        padding: 0 12px;
+        margin: 10px;
+        text-decoration: none;
+        background: #f2f2f2;
+        font-size: 14pt;
+        cursor:pointer;
+      }
+      .close:hover {background: #e6e6ff;}
+
+
+    </style>
+</head>
+<body>
+<h1>Orders:</h1>
+
+<table class="orders">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Number Order</th>
+        <th>Poverca</th>
+        <th>Start Poverci</th>
+        <th>Status Poverci</th>
+        <th>Date Arrival</th>
+        <th>date Delivery</th>
+        <th>Count days for shipment</th>
+        <th>Date Shipment</th>
+        <th>edit</th>
+        <th>Shipment</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}">0</td>
+        <td th:text="${order.numberOrder}">Your number order</td>
+        <td th:text="${order.poverca}">0</td>
+        <td th:text="${order.startPoverc}">0</td>
+        <td th:bgcolor="${order.colorPoverce}" th:text="${order.statusPoverce}">0</td>
+        <td th:text="${order.dataOfArrival}">0</td>
+        <td th:text="${order.dateOfDelivery}">0</td>
+        <td th:bgcolor="${order.colorShipment}" th:text="${order.daysForShipment}">0</td>
+        <td th:text="${order.dataShipment}">0</td>
+        <td>
+            <form th:action="@{/edit/{numberOrder}(numberOrder=${order.numberOrder})}" accept-charset="utf-8">
+                <button type="submit">edit</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/edit/{id}(id=${order.id})}" th:method="post" accept-charset="utf-8">
+                <button type="submit">отгружен</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!--<a th:href="@{/order/create}" href="OrderCreate.html">New order</a>-->
+<form  th:action="@{/order/create}" accept-charset="utf-8">
+    <button type="submit" class="floated">Add new Order</button>
+</form>
+
+<form  th:action="@{/order/update}" th:method="get" accept-charset="utf-8">
+    <button type="submit" class="floated">Update</button>
+</form>
+<form  th:action="@{/order/deleteAll}" th:method="post" accept-charset="utf-8">
+    <button type="submit" class="floated" >Delete All</button>
+</form>
+
+
+<form class="floated" th:action="@{/order/saveFile}" th:method="post" accept-charset="utf-8">
+    <div id="zatemnenie">
+        <div id="okno">
+            Файл успешено сохранен<br>
+            C:/poverca/documents<br>
+
+            <button type="submit" onclick="location.href='#';" class="close"> Закрыть окно</button>
+        </div>
+    </div>
+</form>
+
+<input type="button" onclick="location.href='#zatemnenie';" value="save file"/>
+
+</body>
+</html>

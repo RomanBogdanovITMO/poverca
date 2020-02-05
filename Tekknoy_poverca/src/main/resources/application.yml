@@ -1,0 +1,32 @@
+server:
+  port : 8080
+
+upload:
+  path: ../poverca/documents
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: root
+      repositories:
+        enabled: true
+
+resultParserNameXLSX: xlsx
+resultParserNameXLS: xls
+notCountDays: неопределено
+formatDateResult: dd.MM.yyyy
+formatDateBefore: M/dd/yy
+infoByOrder: По счету
+infoByPoverca: Сдан в поверку
+infoByDataShipment: Дата отгрузки
+infoByAcknoledg: Дата поступления
+infoByDelivery: Заметки
+orderExpired: просрочено
+orderShipment: отгружен
+fileHTMLForParser: ../poverca/Tekknoy_poverca/src/main/resources/templates/OrderList.html
+charsetName: ISO-8859-1
+nameEdit: edit
+tagName: th
+valueDaysForPoverc: 5

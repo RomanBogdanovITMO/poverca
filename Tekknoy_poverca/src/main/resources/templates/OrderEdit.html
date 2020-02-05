@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Order</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<form id="create-form" th:action="@{/edit/save}" th:object="${order}"  th:method="post" accept-charset="utf-8">
+    <h1>Edit Order:</h1>
+
+    <div class="row">
+        <label for="holder-input">Number:</label>
+        <input id="holder-input" name="numberOrder" type="text" th:value="${order.numberOrder}" value="0000"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">Poverca:</label>
+        <input name="poverca" type="text" th:value="${order.poverca}" value="poverca"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">Start Poverce:</label>
+        <input name="startPoverc" type="text" th:value="${order.startPoverc}" value="date"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">Status Poverce:</label>
+        <input name="statusPoverce" type="text" th:value="${order.statusPoverce}" value="in work"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">Arival :</label>
+        <input name="dataOfArrival" type="text" th:value="${order.dataOfArrival}" value="date"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">Deliver :</label>
+        <input name="dateOfDelivery" type="text" th:value="${order.dateOfDelivery}" value="date"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">Days :</label>
+        <input name="daysForShipment" type="text" th:value="${order.daysForShipment}" value="date"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">Date Shipment:</label>
+        <input name="dataShipment" type="text" th:value="${order.dataShipment}" value="date"/>
+    </div>
+    <div class="row">
+        <label for="holder-input">id:</label>
+        <input name="id" type="text" th:value="${order.id}" value="date"/>
+    </div>
+    <div class="row">
+        <button type="submit">Save</button>
+    </div>
+</form>
+
+</body>
+</html>
